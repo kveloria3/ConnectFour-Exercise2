@@ -47,7 +47,11 @@ public class BoardBase {
      * call the reset method
      * */
     public BoardBase() {
-        
+    board = new char[ROWS][COLUMNS];
+    moveNumbers = new int[ROWS][COLUMNS];
+    firstAvailableRow = new int[ROWS];
+    winningCells = new Cell[4]; 
+    reset();
         
         
     }
@@ -60,14 +64,25 @@ public class BoardBase {
      * set moveNumber to 1
      * */
     public void reset() {
-
-        
-        
-        
-        
-        
-        
+      for(int i = 0; i<ROWS; i++){
+        for(int j = 0; j<COLUMNS; j++){
+          board[i][j] = UNMARKED;
+          moveNumbers[i][j] = 0;
+        }
+      }
+      for(int i =0; i<ROWS; i++){
+        firstAvailableRow[i] = ROWS - 1;
+      }
+      for(int i = 0; i<4; i++){
+        winningCells[i] = new Cell(0,0);
+      }
+      winnerFound = false;
+      moveNumber = 1;
     }
+        
+        
+        
+        
     
     /** Returns a copy of the board
      *  create a new 2-D array the same size as the board
@@ -75,6 +90,14 @@ public class BoardBase {
      *  return the new copy
      * */
     public char[][] getGrid() {
+      char[][] Grid = new char[ROWS][COLUMNS];
+      for(int i = 0; i < ROWS; i++){
+        for(int j = 0; j < COLUMNS; j++){
+          Grid[i][j] = board[i][j];
+        }
+      }
+    return Grid;
+    
 
         
         
